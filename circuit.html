@@ -1,0 +1,29 @@
+<script>
+  console.log("これは本当に cat_universe/circuit.html か？");
+</script>
+<script>
+  console.log("circuit.html が開かれたよ");
+</script>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>意味回路</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: black; }
+    canvas { display: block; }
+  </style>
+
+  <!-- Three.js 読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+
+</head>
+
+<body>
+  <button id="universeBtn">星の宇宙</button>
+  <button id="circuitBtn">意味回路</button>
+  <button id="neuralBtn">神経回路</button>
+  <canvas id="canvas"></canvas>
+  <script src="circuit.js"></script>
+</body>
+</html>
