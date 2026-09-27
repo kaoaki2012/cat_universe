@@ -21,6 +21,16 @@ console.log("circuit.js 読み込み OK");
       0.1,
       1000
     );
+
+    const labelRenderer = new THREE.CSS2DRenderer();
+    labelRenderer.setSize(window.innerWidth, window.innerHeight);
+     
+    labelRenderer.domElement.style.position = "absolute";
+    labelRenderer.domElement.style.top = "0px";
+    labelRenderer.domElement.style.pointerEvents = "none";
+     
+    document.body.appendChild(labelRenderer.domElement);
+    
     camera.lookAt(scene.position);
     camera.position.z = 150;
     camera.position.y = 50;    // 上から見下ろす
@@ -70,8 +80,20 @@ fetch("cat_space.json")
       const sphere = new THREE.Mesh(geometry, material);
       sphere.position.set(node.x, node.y, node.z);
       scene.add(sphere);
-    });
     
+     const labelDiv = document.createElement("div");
+    labelDiv.textContent = node.word;
+     
+    labelDiv.style.color = "white";
+    labelDiv.style.fontSize = "12px";
+    labelDiv.style.fontFamily = "sans-serif";
+     
+    const label = new THREE.CSS2DObject(labelDiv);
+     
+    label.position.set(0, 1, 0);
+     
+    sphere.add(label);
+    });
      const edgeMaterial = new THREE.LineBasicMaterial({
       color: 0x66ccff,      // 明るい青
       transparent: true,
@@ -116,6 +138,7 @@ function animate() {
   camera.lookAt(scene.position);
 
   renderer.render(scene, camera);
+  labelRenderer.render(scene, camera);
 }
 
 animate();
