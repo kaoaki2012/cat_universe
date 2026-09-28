@@ -1,3 +1,5 @@
+alert("circuit.js 開始");
+
 console.log("circuit.js 読み込み OK");
 
 // ===============================
@@ -21,6 +23,10 @@ console.log("circuit.js 読み込み OK");
       0.1,
       1000
     );
+
+    console.log(THREE);
+    console.log(THREE.CSS2DRenderer);
+    console.log(THREE.CSS2DObject);
 
     const labelRenderer = new THREE.CSS2DRenderer();
     labelRenderer.setSize(window.innerWidth, window.innerHeight);
@@ -46,6 +52,7 @@ fetch("cat_space.json")
     // まず生の座標をそのまま取る
     const rawNodes = data.map((item, index) => ({
       id: index,
+      word: item.word,
       x: item.x,
       y: item.y,
       z: item.z
@@ -65,6 +72,7 @@ fetch("cat_space.json")
     // 重心を原点にずらして、SCALE を掛ける
     const nodes = rawNodes.map(n => ({
       id: n.id,
+      word: n.word,
       x: (n.x - cx) * SCALE,
       y: (n.y - cy) * SCALE,
       z: (n.z - cz) * SCALE
